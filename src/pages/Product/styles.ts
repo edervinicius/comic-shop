@@ -19,6 +19,9 @@ export const ProductWrapper = styled.div`
   display: grid;
   grid-template-columns: 40% 60%;
   gap: 20px;
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 `;
 export const ProductImage = styled.div`
   background: #ddd;

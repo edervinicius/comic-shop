@@ -4,6 +4,9 @@ export const ComicContainer = styled.div`
   padding: 10px;
   display: inline-block;
   width: 200px;
+  @media only screen and (max-width: 768px) {
+    width: 190px;
+  }
   .raro::before {
     content: "Item Raro";
     border-radius: 5px;

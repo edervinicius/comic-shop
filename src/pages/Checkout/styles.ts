@@ -4,6 +4,9 @@ export const CheckoutWrapper = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
   grid-gap: 20px;
+  @media only screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
   form {
     padding: 20px;
     input {

@@ -12,10 +12,12 @@ export default createGlobalStyle`
     .btn-dark{color: #fff;background: #333;}
     .btn-lg{font-size: 1.2em;padding: 15px 30px;}
     .page-title{margin: 20px 0 20px 0;font-size: 30px;font-weight: bold;}
+    @media only screen and (max-width: 768px) {.page-title{text-align: center;}}
 `;
 
 export const Container = styled.div`
   max-width: 1200px;
+  padding: 0 6px;
   min-height: 80vh;
   margin: 0 auto;
   position: relative;

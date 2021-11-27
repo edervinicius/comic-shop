@@ -17,6 +17,9 @@ export const FinishBtns = styled.div`
   * {
     margin-left: 10px;
   }
+  @media only screen and (max-width: 768px) {
+    text-align: center;
+  }
 `;
 export const CartWrapper = styled.table`
   background: #fff;
@@ -24,6 +27,13 @@ export const CartWrapper = styled.table`
   border-top: #aaa solid 1px;
   border-right: #aaa solid 1px;
   padding: 0;
+  @media only screen and (max-width: 768px) {
+    td:first-child,
+    td:nth-child(4),
+    td:nth-child(6) {
+      display: none;
+    }
+  }
   td {
     text-align: center;
     padding: 5px;
