@@ -2,6 +2,7 @@
 exports.__esModule = true;
 var react_1 = require("react");
 var styles_1 = require("./styles");
+var Price_1 = require("../../components/Price");
 var Comic = function (_a) {
     var img = _a.img, title = _a.title, price = _a.price, rare = _a.rare;
     return (react_1["default"].createElement(styles_1.ComicContainer, null,
@@ -11,7 +12,6 @@ var Comic = function (_a) {
             react_1["default"].createElement("div", { className: "title" },
                 react_1["default"].createElement("h2", null, title)),
             react_1["default"].createElement("p", { className: "price" },
-                "$",
-                price))));
+                react_1["default"].createElement(Price_1["default"], { price: parseInt(price) })))));
 };
 exports["default"] = Comic;

@@ -45,12 +45,12 @@ const Checkout: React.FC = () => {
       const discValue = (commonsum * discountPercentage) / 100;
       setSubTotal(sumtotal);
       setDiscount(discValue);
-      setTotal(sumtotal - discount);
+      setTotal(sumtotal - discValue);
     } else {
       const discValue = (sumtotal * discountPercentage) / 100;
       setSubTotal(sumtotal);
       setDiscount(discValue);
-      setTotal(sumtotal - discount);
+      setTotal(sumtotal - discValue);
     }
   };
   const handleCoupon = async (e: React.FormEvent<HTMLFormElement>) => {

@@ -72,13 +72,13 @@ var Checkout = function () {
             var discValue = (commonsum * discountPercentage) / 100;
             setSubTotal(sumtotal);
             setDiscount(discValue);
-            setTotal(sumtotal - discount);
+            setTotal(sumtotal - discValue);
         }
         else {
             var discValue = (sumtotal * discountPercentage) / 100;
             setSubTotal(sumtotal);
             setDiscount(discValue);
-            setTotal(sumtotal - discount);
+            setTotal(sumtotal - discValue);
         }
     };
     var handleCoupon = function (e) { return __awaiter(void 0, void 0, void 0, function () {

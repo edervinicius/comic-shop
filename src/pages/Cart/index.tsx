@@ -11,6 +11,7 @@ interface ICart {
   price: number;
   image: string;
   quantity: number;
+  rare: boolean;
 }
 
 const Cart: React.FC = () => {
@@ -25,44 +26,49 @@ const Cart: React.FC = () => {
       return (
         <>
           <CartWrapper>
-            {cartProd.map((item, index) => (
-              <tr key={item.id}>
-                <td>{index + 1}</td>
-                <td>
-                  <div className="thumbnail">
-                    <img src={item.image} alt="" />
-                  </div>
-                </td>
-                <td>
-                  <h3>{item.title}</h3>
-                </td>
-                <td>
-                  <Price price={item.price} />
-                </td>
-                <td className="quantity">
-                  <input
-                    type="number"
-                    min="1"
-                    defaultValue={item.quantity}
-                    onChange={(e) =>
-                      updateProdQty(index, parseInt(e.target.value))
-                    }
-                  />
-                </td>
-                <td>
-                  <Price price={item.price * item.quantity} />
-                </td>
-                <td>
-                  <button
-                    className="btn btn-dark"
-                    onClick={(e) => removeProd(index)}
-                  >
-                    <FontAwesomeIcon icon={faTrashAlt} />
-                    <span> Remover</span>
-                  </button>
-                </td>
-              </tr>
-            ))}
+            <tbody>
+              {cartProd.map((item, index) => (
+                <tr key={item.id}>
+                  <td>{index + 1}</td>
+                  <td>
+                    <div className="thumbnail">
+                      <img src={item.image} alt="" />
+                    </div>
+                  </td>
+                  <td>
+                    <h3>
+                      {item.title}
+                      {item.rare}
+                    </h3>
+                  </td>
+                  <td>
+                    <Price price={item.price} />
+                  </td>
+                  <td className="quantity">
+                    <input
+                      type="number"
+                      min="1"
+                      defaultValue={item.quantity}
+                      onChange={(e) =>
+                        updateProdQty(index, parseInt(e.target.value))
+                      }
+                    />
+                  </td>
+                  <td>
+                    <Price price={item.price * item.quantity} />
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-dark"
+                      onClick={(e) => removeProd(index)}
+                    >
+                      <FontAwesomeIcon icon={faTrashAlt} />
+                      <span> Remover</span>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </CartWrapper>
           <FinishBtns>
             <Link to="/">Continuar comprando</Link>

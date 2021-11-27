@@ -1,5 +1,6 @@
 import React from "react";
 import { ComicContainer } from "./styles";
+import Price from "../../components/Price";
 
 interface Props {
   img: string;
@@ -18,7 +19,9 @@ const Comic: React.FC<Props> = ({ img, title, price, rare }) => {
         <div className="title">
           <h2>{title}</h2>
         </div>
-        <p className="price">${price}</p>
+        <p className="price">
+          <Price price={parseInt(price)} />
+        </p>
       </div>
     </ComicContainer>
   );

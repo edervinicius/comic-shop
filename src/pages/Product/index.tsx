@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 import api from "../../services/api";
 import md5 from "md5";
 import { Link, useNavigate } from "react-router-dom";
+import Price from "../../components/Price";
 
 const Product: React.FC = () => {
   const { REACT_APP_PUBLIC_KEY, REACT_APP_PRIVATE_KEY } = process.env;
@@ -21,11 +22,12 @@ const Product: React.FC = () => {
   const [price, setPrice] = useState("");
 
   const searchComic = async () => {
+    console.log("searchComic");
     const ts = new Date().getTime();
     const hash = REACT_APP_PRIVATE_KEY
-      ? md5(ts + REACT_APP_PRIVATE_KEY + REACT_APP_PRIVATE_KEY)
+      ? md5(ts + REACT_APP_PRIVATE_KEY + REACT_APP_PUBLIC_KEY)
       : "";
-    let url = `/comics/${id}?ts=${ts}&apikey=${REACT_APP_PRIVATE_KEY}&hash=${hash}`;
+    let url = `/comics/${id}?ts=${ts}&apikey=${REACT_APP_PUBLIC_KEY}&hash=${hash}`;
     api
       .get(url)
       .then((response) => {
@@ -72,7 +74,7 @@ const Product: React.FC = () => {
   useEffect(() => {
     setRare(localStorage.getItem("rare") === id);
     searchComic();
-  }, [id]);
+  }, [rare, id]);
   return (
     <>
       <BreadCrumbs>
@@ -89,7 +91,9 @@ const Product: React.FC = () => {
           <div className="description">
             <p>{description}</p>
           </div>
-          <div className="price">${price}</div>
+          <div className="price">
+            <Price price={parseInt(price)} />
+          </div>
           <button className="btn btn-success btn-lg" onClick={buyProduct}>
             Comprar
           </button>

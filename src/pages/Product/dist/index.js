@@ -42,6 +42,7 @@ var react_router_dom_1 = require("react-router-dom");
 var api_1 = require("../../services/api");
 var md5_1 = require("md5");
 var react_router_dom_2 = require("react-router-dom");
+var Price_1 = require("../../components/Price");
 var Product = function () {
     var _a = process.env, REACT_APP_PUBLIC_KEY = _a.REACT_APP_PUBLIC_KEY, REACT_APP_PRIVATE_KEY = _a.REACT_APP_PRIVATE_KEY;
     var navigate = react_router_dom_2.useNavigate();
@@ -54,11 +55,12 @@ var Product = function () {
     var searchComic = function () { return __awaiter(void 0, void 0, void 0, function () {
         var ts, hash, url;
         return __generator(this, function (_a) {
+            console.log("searchComic");
             ts = new Date().getTime();
             hash = REACT_APP_PRIVATE_KEY
-                ? md5_1["default"](ts + REACT_APP_PRIVATE_KEY + REACT_APP_PRIVATE_KEY)
+                ? md5_1["default"](ts + REACT_APP_PRIVATE_KEY + REACT_APP_PUBLIC_KEY)
                 : "";
-            url = "/comics/" + id + "?ts=" + ts + "&apikey=" + REACT_APP_PRIVATE_KEY + "&hash=" + hash;
+            url = "/comics/" + id + "?ts=" + ts + "&apikey=" + REACT_APP_PUBLIC_KEY + "&hash=" + hash;
             api_1["default"]
                 .get(url)
                 .then(function (response) {
@@ -104,7 +106,7 @@ var Product = function () {
     react_1.useEffect(function () {
         setRare(localStorage.getItem("rare") === id);
         searchComic();
-    }, [id]);
+    }, [rare, id]);
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement(styles_1.BreadCrumbs, null,
             react_1["default"].createElement("div", { className: "bcInner" },
@@ -117,8 +119,7 @@ var Product = function () {
                 react_1["default"].createElement("div", { className: "description" },
                     react_1["default"].createElement("p", null, description)),
                 react_1["default"].createElement("div", { className: "price" },
-                    "$",
-                    price),
+                    react_1["default"].createElement(Price_1["default"], { price: parseInt(price) })),
                 react_1["default"].createElement("button", { className: "btn btn-success btn-lg", onClick: buyProduct }, "Comprar")))));
 };
 exports["default"] = Product;

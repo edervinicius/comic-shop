@@ -44,6 +44,7 @@ var Comic_1 = require("../../components/Comic");
 var react_router_dom_1 = require("react-router-dom");
 var Home = function () {
     var _a = process.env, REACT_APP_PUBLIC_KEY = _a.REACT_APP_PUBLIC_KEY, REACT_APP_PRIVATE_KEY = _a.REACT_APP_PRIVATE_KEY;
+    //console.log(REACT_APP_PUBLIC_KEY, REACT_APP_PRIVATE_KEY);
     var navigate = react_router_dom_1.useNavigate();
     var _b = react_1.useState([]), comics = _b[0], setComics = _b[1];
     var _c = react_1.useState(0), rares = _c[0], setRares = _c[1];
@@ -56,25 +57,23 @@ var Home = function () {
         var ts, hash, url;
         return __generator(this, function (_a) {
             ts = new Date().getTime();
-            hash = REACT_APP_PUBLIC_KEY
-                ? md5_1["default"](ts + REACT_APP_PUBLIC_KEY + REACT_APP_PRIVATE_KEY)
+            hash = REACT_APP_PRIVATE_KEY
+                ? md5_1["default"](ts + REACT_APP_PRIVATE_KEY + REACT_APP_PUBLIC_KEY)
                 : "";
             url = searchQuery === ""
-                ? "comics?ts=" + ts + "&apikey=" + REACT_APP_PUBLIC_KEY + "&hash=" + hash + "&limit=30&format=comic&formatType=comic"
-                : "comics?ts=" + ts + "&apikey=" + REACT_APP_PUBLIC_KEY + "&hash=" + hash + "&limit=30&format=comic&formatType=comic&titleStartsWith=" + searchQuery;
+                ? "comics?ts=" + ts + "&apikey=" + REACT_APP_PUBLIC_KEY + "&hash=" + hash + "&limit=30&format=comic&formatType=comic&orderBy=title"
+                : "comics?ts=" + ts + "&apikey=" + REACT_APP_PUBLIC_KEY + "&hash=" + hash + "&limit=30&format=comic&formatType=comic&orderBy=title&titleStartsWith=" + searchQuery;
             api_1["default"]
                 .get(url)
                 .then(function (response) {
-                if (response.data.status === 200) {
-                    if (response.data.data.results.length > 0) {
-                        localStorage.setItem("rare", "");
-                        var rare = (response.data.data.results.length * 10) / 100;
-                        setRares(rare);
-                        setComics(response.data.data.results);
-                    }
-                    else {
-                        setComics([]);
-                    }
+                if (response.data.data.results.length > 0) {
+                    localStorage.setItem("rare", "");
+                    var rare = (response.data.data.results.length * 10) / 100;
+                    setRares(rare);
+                    setComics(response.data.data.results);
+                }
+                else {
+                    setComics([]);
                 }
             })["catch"](function (err) {
                 console.error("ops! ocorreu um erro" + err);
@@ -91,12 +90,12 @@ var Home = function () {
     var viewProduct = function (id, rare) {
         if (rare)
             localStorage.setItem("rare", id.toString());
-        navigate("/product/" + id);
+        navigate("/produto/" + id);
         //`/produto/${comic.id}`
     };
     react_1.useEffect(function () {
         searchComics();
-    }, [comics]);
+    });
     return (react_1["default"].createElement(react_1["default"].Fragment, null,
         react_1["default"].createElement(styles_1.SearchWrapper, null,
             react_1["default"].createElement("h3", null, "Encontre sua HQ"),
