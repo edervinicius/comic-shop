@@ -18,7 +18,7 @@ export const SearchWrapper = styled.div`
 export const SearchField = styled.div`
   form {
     display: grid;
-    grid-template-columns: 60% 20% 20%;
+    grid-template-columns: 50% 10% 20% 20%;
     gap: 5px;
   }
 `;

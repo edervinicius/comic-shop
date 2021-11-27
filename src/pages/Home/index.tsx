@@ -25,6 +25,8 @@ const Home: React.FC = () => {
   const [comics, setComics] = useState<Comics[]>([]);
   const [rares, setRares] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchLimit, setSearchLimit] = useState(30);
+
   const clearSearch = () => {
     setSearchQuery("");
     searchComics();
@@ -36,8 +38,8 @@ const Home: React.FC = () => {
       : "";
     let url =
       searchQuery === ""
-        ? `comics?ts=${ts}&apikey=${REACT_APP_PUBLIC_KEY}&hash=${hash}&limit=30&format=comic&formatType=comic&orderBy=title`
-        : `comics?ts=${ts}&apikey=${REACT_APP_PUBLIC_KEY}&hash=${hash}&limit=30&format=comic&formatType=comic&orderBy=title&titleStartsWith=${searchQuery}`;
+        ? `comics?ts=${ts}&apikey=${REACT_APP_PUBLIC_KEY}&hash=${hash}&limit=${searchLimit}&format=comic&formatType=comic&orderBy=title`
+        : `comics?ts=${ts}&apikey=${REACT_APP_PUBLIC_KEY}&hash=${hash}&limit=${searchLimit}&format=comic&formatType=comic&orderBy=title&titleStartsWith=${searchQuery}`;
     api
       .get(url)
       .then((response) => {
@@ -79,6 +81,14 @@ const Home: React.FC = () => {
               placeholder="Buscar pelo título"
               name="sq"
               defaultValue={searchQuery}
+            />
+            <input
+              type="number"
+              min="1"
+              max="100"
+              name="limit"
+              onChange={(e) => setSearchLimit(Number(e.target.value))}
+              defaultValue={searchLimit}
             />
             <button className="btn btn-primary">Buscar</button>
             <button onClick={(e) => clearSearch()} className="btn btn-dark">

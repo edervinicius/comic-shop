@@ -49,6 +49,7 @@ var Home = function () {
     var _b = react_1.useState([]), comics = _b[0], setComics = _b[1];
     var _c = react_1.useState(0), rares = _c[0], setRares = _c[1];
     var _d = react_1.useState(""), searchQuery = _d[0], setSearchQuery = _d[1];
+    var _e = react_1.useState(30), searchLimit = _e[0], setSearchLimit = _e[1];
     var clearSearch = function () {
         setSearchQuery("");
         searchComics();
@@ -61,8 +62,8 @@ var Home = function () {
                 ? md5_1["default"](ts + REACT_APP_PRIVATE_KEY + REACT_APP_PUBLIC_KEY)
                 : "";
             url = searchQuery === ""
-                ? "comics?ts=" + ts + "&apikey=" + REACT_APP_PUBLIC_KEY + "&hash=" + hash + "&limit=30&format=comic&formatType=comic&orderBy=title"
-                : "comics?ts=" + ts + "&apikey=" + REACT_APP_PUBLIC_KEY + "&hash=" + hash + "&limit=30&format=comic&formatType=comic&orderBy=title&titleStartsWith=" + searchQuery;
+                ? "comics?ts=" + ts + "&apikey=" + REACT_APP_PUBLIC_KEY + "&hash=" + hash + "&limit=" + searchLimit + "&format=comic&formatType=comic&orderBy=title"
+                : "comics?ts=" + ts + "&apikey=" + REACT_APP_PUBLIC_KEY + "&hash=" + hash + "&limit=" + searchLimit + "&format=comic&formatType=comic&orderBy=title&titleStartsWith=" + searchQuery;
             api_1["default"]
                 .get(url)
                 .then(function (response) {
@@ -102,6 +103,7 @@ var Home = function () {
             react_1["default"].createElement(styles_1.SearchField, null,
                 react_1["default"].createElement("form", { onSubmit: handleFormSubmit },
                     react_1["default"].createElement("input", { type: "search", placeholder: "Buscar pelo t\u00EDtulo", name: "sq", defaultValue: searchQuery }),
+                    react_1["default"].createElement("input", { type: "number", min: "1", max: "100", name: "limit", onChange: function (e) { return setSearchLimit(Number(e.target.value)); }, defaultValue: searchLimit }),
                     react_1["default"].createElement("button", { className: "btn btn-primary" }, "Buscar"),
                     react_1["default"].createElement("button", { onClick: function (e) { return clearSearch(); }, className: "btn btn-dark" }, "Limpar")))),
         react_1["default"].createElement(styles_1.ComicsGrid, null, comics === null || comics === void 0 ? void 0 : comics.map(function (comic, index) { return (react_1["default"].createElement("div", { key: comic.id, onClick: function (e) { return viewProduct(comic.id, index < rares); } },
