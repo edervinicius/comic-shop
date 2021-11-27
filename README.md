@@ -3,7 +3,7 @@
 O app pode ser visto na [Vercel](https://agenzia-marvel-baoc8fkor-edervinicius.vercel.app/).
 https://agenzia-marvel-baoc8fkor-edervinicius.vercel.app/
 
-Na página inicial existe um campo para pesquisa de revistas, 10% das revistas retornadas são marcadas como Raras, clicando no botão Buscar é realizada a pesquisa, ao clicar em Limpar o campo é resetado
+Na página inicial existe um campo para pesquisa de revistas e total de retorno, 10% das revistas retornadas são marcadas como Raras, clicando no botão Buscar é realizada a pesquisa, ao clicar em Limpar o campo é resetado
 
 Ao clicar em uma revista a pagina de informações é carregada, ao clicar em comprar, a revista é adicionada ao carrinho
 
@@ -13,14 +13,16 @@ Na tela de checkout pode-se aplicar duas categorias de cupom de desconto, o cód
 
 Ao clicar em Pagamento o carrinho é zerado e direcionado para página inicial
 
-## Available Scripts
+## Rodando o App localmente
 
-In the project directory, you can run:
+Na pasta inicial do projeto rode o script:
 
 ### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Estrutura
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+O aplicativo foi desenvolvido em ReactJS consumindo a API da Marvel, o Public e Private keys são mantidos no arquivo .env
+
+O carrinho é mantido em sessão no navegador por localStorage
+
+Os cupons de descontos utilizam o serviço de api rest da https://mockapi.io
