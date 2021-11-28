@@ -76,24 +76,28 @@ const Home: React.FC = () => {
         <h3>Encontre sua HQ</h3>
         <SearchField>
           <form onSubmit={handleFormSubmit}>
-            <input
-              type="search"
-              placeholder="Buscar pelo título"
-              name="sq"
-              defaultValue={searchQuery}
-            />
-            <input
-              type="number"
-              min="1"
-              max="100"
-              name="limit"
-              onChange={(e) => setSearchLimit(Number(e.target.value))}
-              defaultValue={searchLimit}
-            />
-            <button className="btn btn-primary">Buscar</button>
-            <button onClick={(e) => clearSearch()} className="btn btn-dark">
-              Limpar
-            </button>
+            <div className="inputs">
+              <input
+                type="search"
+                placeholder="Buscar pelo título"
+                name="sq"
+                defaultValue={searchQuery}
+              />
+              <input
+                type="number"
+                min="1"
+                max="100"
+                name="limit"
+                onChange={(e) => setSearchLimit(Number(e.target.value))}
+                defaultValue={searchLimit}
+              />
+            </div>
+            <div className="buttons">
+              <button className="btn btn-primary">Buscar</button>
+              <button onClick={(e) => clearSearch()} className="btn btn-dark">
+                Limpar
+              </button>
+            </div>
           </form>
         </SearchField>
       </SearchWrapper>

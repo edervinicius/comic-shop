@@ -2,10 +2,7 @@ import styled from "styled-components";
 
 export const ComicContainer = styled.div`
   padding: 10px;
-  display: inline-block;
-  width: 200px;
   @media only screen and (max-width: 768px) {
-    width: 190px;
   }
   .raro::before {
     content: "Item Raro";
@@ -44,7 +41,7 @@ export const ComicContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 290px;
+
     overflow-y: hidden;
     img {
       max-width: 100%;

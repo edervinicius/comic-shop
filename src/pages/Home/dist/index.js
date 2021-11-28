@@ -102,10 +102,12 @@ var Home = function () {
             react_1["default"].createElement("h3", null, "Encontre sua HQ"),
             react_1["default"].createElement(styles_1.SearchField, null,
                 react_1["default"].createElement("form", { onSubmit: handleFormSubmit },
-                    react_1["default"].createElement("input", { type: "search", placeholder: "Buscar pelo t\u00EDtulo", name: "sq", defaultValue: searchQuery }),
-                    react_1["default"].createElement("input", { type: "number", min: "1", max: "100", name: "limit", onChange: function (e) { return setSearchLimit(Number(e.target.value)); }, defaultValue: searchLimit }),
-                    react_1["default"].createElement("button", { className: "btn btn-primary" }, "Buscar"),
-                    react_1["default"].createElement("button", { onClick: function (e) { return clearSearch(); }, className: "btn btn-dark" }, "Limpar")))),
+                    react_1["default"].createElement("div", { className: "inputs" },
+                        react_1["default"].createElement("input", { type: "search", placeholder: "Buscar pelo t\u00EDtulo", name: "sq", defaultValue: searchQuery }),
+                        react_1["default"].createElement("input", { type: "number", min: "1", max: "100", name: "limit", onChange: function (e) { return setSearchLimit(Number(e.target.value)); }, defaultValue: searchLimit })),
+                    react_1["default"].createElement("div", { className: "buttons" },
+                        react_1["default"].createElement("button", { className: "btn btn-primary" }, "Buscar"),
+                        react_1["default"].createElement("button", { onClick: function (e) { return clearSearch(); }, className: "btn btn-dark" }, "Limpar"))))),
         react_1["default"].createElement(styles_1.ComicsGrid, null, comics === null || comics === void 0 ? void 0 : comics.map(function (comic, index) { return (react_1["default"].createElement("div", { key: comic.id, onClick: function (e) { return viewProduct(comic.id, index < rares); } },
             react_1["default"].createElement(Comic_1["default"], { rare: index < rares, title: comic.title, img: comic.thumbnail.path
                     ? comic.thumbnail.path + "." + comic.thumbnail.extension
