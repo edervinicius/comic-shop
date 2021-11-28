@@ -1,7 +1,7 @@
 # Getting Started
 
-O app pode ser visto na [Vercel](https://agenzia-marvel-baoc8fkor-edervinicius.vercel.app/).
-https://agenzia-marvel-baoc8fkor-edervinicius.vercel.app/
+O app pode ser visto na [Vercel](https://agenzia-marvel.vercel.app/).
+https://agenzia-marvel.vercel.app/
 
 Na página inicial existe um campo para pesquisa de revistas e total de retorno, 10% das revistas retornadas são marcadas como Raras, clicando no botão Buscar é realizada a pesquisa, ao clicar em Limpar o campo é resetado
 
