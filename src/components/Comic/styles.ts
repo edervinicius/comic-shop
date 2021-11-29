@@ -2,9 +2,14 @@ import styled from "styled-components";
 
 export const ComicContainer = styled.div`
   padding: 10px;
-  @media only screen and (max-width: 768px) {
+  cursor: pointer;
+  :hover img {
+    transition: all 0.17s ease-in-out;
+    transform: translate3d(0, -10px, 0);
   }
+
   .raro::before {
+    z-index: 999;
     content: "Item Raro";
     border-radius: 5px;
     color: #fff;
@@ -37,13 +42,14 @@ export const ComicContainer = styled.div`
       );
   }
   .cover {
-    margin: 0 0 10px 0;
+    margin: 0 0 20px 0;
     display: flex;
     justify-content: center;
     align-items: center;
 
-    overflow-y: hidden;
     img {
+      box-shadow: 0 26px 24px -16px rgb(0 0 0 / 40%);
+      transition: all 0.17s ease-in-out;
       max-width: 100%;
       height: auto;
     }
