@@ -42,7 +42,10 @@ var api_1 = require("../../services/api");
 var md5_1 = require("md5");
 var Comic_1 = require("../../components/Comic");
 var react_router_dom_1 = require("react-router-dom");
+var sweetalert2_1 = require("sweetalert2");
+var sweetalert2_react_content_1 = require("sweetalert2-react-content");
 var Home = function () {
+    var MySwal = sweetalert2_react_content_1["default"](sweetalert2_1["default"]);
     var _a = process.env, REACT_APP_PUBLIC_KEY = _a.REACT_APP_PUBLIC_KEY, REACT_APP_PRIVATE_KEY = _a.REACT_APP_PRIVATE_KEY;
     //console.log(REACT_APP_PUBLIC_KEY, REACT_APP_PRIVATE_KEY);
     var navigate = react_router_dom_1.useNavigate();
@@ -77,7 +80,11 @@ var Home = function () {
                     setComics([]);
                 }
             })["catch"](function (err) {
-                console.error("ops! ocorreu um erro" + err);
+                MySwal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "Você excedeu o seu limite de pesquisas. Por favor, tente novamente mais tarde."
+                }).then(function () { });
             });
             return [2 /*return*/];
         });

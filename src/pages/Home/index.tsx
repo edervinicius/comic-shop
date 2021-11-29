@@ -4,6 +4,8 @@ import api from "../../services/api";
 import md5 from "md5";
 import Comic from "../../components/Comic";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 interface Comics {
   id: number;
@@ -19,6 +21,7 @@ interface Comics {
 }
 
 const Home: React.FC = () => {
+  const MySwal = withReactContent(Swal);
   const { REACT_APP_PUBLIC_KEY, REACT_APP_PRIVATE_KEY } = process.env;
   //console.log(REACT_APP_PUBLIC_KEY, REACT_APP_PRIVATE_KEY);
   const navigate = useNavigate();
@@ -53,7 +56,11 @@ const Home: React.FC = () => {
         }
       })
       .catch((err) => {
-        console.error("ops! ocorreu um erro" + err);
+        MySwal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Você excedeu o seu limite de pesquisas. Por favor, tente novamente mais tarde.",
+        }).then(() => {});
       });
   };
   const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
