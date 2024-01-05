@@ -91,9 +91,11 @@ const Product: React.FC = () => {
           <div className="description">
             <p>{description}</p>
           </div>
-          <div className="price">
-            <Price price={parseInt(price)} />
-          </div>
+          {price && (
+            <div className="price">
+              <Price price={parseInt(price)} />
+            </div>
+          )}
           <button className="btn btn-success btn-lg" onClick={buyProduct}>
             Comprar
           </button>
