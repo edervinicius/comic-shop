@@ -23,7 +23,6 @@ interface Comics {
 const Home: React.FC = () => {
   const MySwal = withReactContent(Swal);
   const { REACT_APP_PUBLIC_KEY, REACT_APP_PRIVATE_KEY } = process.env;
-  //console.log(REACT_APP_PUBLIC_KEY, REACT_APP_PRIVATE_KEY);
   const navigate = useNavigate();
   const [comics, setComics] = useState<Comics[]>([]);
   const [rares, setRares] = useState(0);
